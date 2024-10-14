@@ -12,6 +12,12 @@ const CHANNEL_ID = "UCZJS-lpC1BhLSdsjAqj1i8A";
 router.get("/videos", async (req, res) => {
   console.log("/videos");
 
+  //if mockup is true, return a mockup response
+  if (process.env.MOCKUP === "true") {
+    const mockup = require("./b/mock");
+    return res.json({ items: mockup.items });
+  }
+
   try {
     // Check if videos are already in the database
     const videos = await Video.find();

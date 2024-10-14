@@ -6,6 +6,12 @@ body {
   padding: 0;
 }
 
+.subscribe-button-wrapper {
+  display: inline-block;
+  transform: scale(1.5); /* Adjust the scaling factor as needed */
+  transform-origin: 0 0; /* Ensure scaling starts from the top-left */
+}
+
 .App {
   text-align: center;
   padding: 20px;
@@ -67,7 +73,7 @@ main {
 h1 {
   font-size: 36px;
   font-weight: 700;
-  margin-bottom: 40px;
+  /* margin-bottom: 40px; */
   color: #ff0000;
 }
 
@@ -176,14 +182,8 @@ h1 {
 }
 
 @media (max-width: 768px) {
-  .App-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
 
-  nav ul {
-    margin-bottom: 20px;
-  }
+
 
   h1 {
     font-size: 28px;
@@ -207,6 +207,23 @@ h1 {
 
 .youtube-video-list {
   margin-top: 30px;
+}
+
+.youtube-video-list .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Vertically centers the items */
+  padding: 10px 0; /* Adjust padding as needed */
+}
+
+.youtube-video-list .tabs {
+  display: flex;
+  align-items: center; /* Vertically centers the tabs */
+}
+
+.youtube-video-list .subscribe-btn {
+  margin-left: auto;
+  padding: 10px 20px; /* Ensure consistent padding */
 }
 
 .video-grid {
@@ -304,4 +321,15 @@ button:disabled {
   .video-grid {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   }
+}
+
+/* Add this to your App.css file */
+main h1 {
+  text-align: left;
+}
+
+/* Add this to your App.css file */
+main h1 {
+  font-family: 'Impact', sans-serif;
+  font-size: 48px; /* Adjust the size as needed */
 }
