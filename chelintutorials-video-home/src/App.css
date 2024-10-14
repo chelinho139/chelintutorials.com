@@ -8,7 +8,7 @@ body {
 
 .subscribe-button-wrapper {
   display: inline-block;
-  transform: scale(1.5); /* Adjust the scaling factor as needed */
+  transform: scale(1.5) translate(-50%, 0);
   transform-origin: 0 0; /* Ensure scaling starts from the top-left */
 }
 
@@ -332,4 +332,41 @@ main h1 {
 main h1 {
   font-family: 'Impact', sans-serif;
   font-size: 48px; /* Adjust the size as needed */
+}
+
+.posts-container {
+  display: flex;
+  gap: 20px; /* Optional: adds space between the posts */
+  flex-wrap: wrap; /* Allows items to wrap to the next line */
+}
+
+.substack-post-embed {
+  flex: 1; /* Optional: makes each post take equal space */
+  max-height: 550px; /* Set the maximum height for each post */
+  overflow: hidden; /* Adds scrollbars if content exceeds max height */
+  min-width: 250px; /* Ensures a minimum width for each post */
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .posts-container {
+    flex-direction: column; /* Stacks posts vertically */
+  }
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-item {
+  margin-right: 20px;
+}
+
+.logo {
+  width: 40px; /* Adjust the size as needed */
+  height: auto;
 }

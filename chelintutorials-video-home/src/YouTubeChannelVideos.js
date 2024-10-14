@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 
-const YouTubeChannelVideos = ({ apiKey, channelId }) => {
+const YouTubeChannelVideos = ({ channelId }) => {
   const [videos, setVideos] = useState([]);
   const [nextPageToken, setNextPageToken] = useState("");
   const [loading, setLoading] = useState(false);
@@ -12,7 +11,7 @@ const YouTubeChannelVideos = ({ apiKey, channelId }) => {
     setNextPageToken("");
     fetchVideos();
     // fetchVideos();
-  }, [channelId, apiKey, activeTab]);
+  }, [channelId, activeTab]);
 
   const fetchVideos = async () => {
     try {

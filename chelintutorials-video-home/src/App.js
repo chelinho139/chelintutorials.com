@@ -1,11 +1,18 @@
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  NavLink,
+} from "react-router-dom";
 import { useEffect } from "react";
 import "./App.css";
 import YouTubeChannelVideos from "./YouTubeChannelVideos";
+import Posts from "./Posts"; // Import the new Posts component
+import Community from "./Community"; // Import the new Community component
 
 function App() {
-  const API_KEY = "AIzaSyB5I0fMWHlFbCH4krG98Mpm2VT3eaC13U4";
   const CHANNEL_ID = "UCZJS-lpC1BhLSdsjAqj1i8A";
-  // Load the YouTube platform script dynamically
+
   useEffect(() => {
     const script = document.createElement("script");
     script.src = "https://apis.google.com/js/platform.js";
@@ -13,45 +20,65 @@ function App() {
     document.body.appendChild(script);
 
     return () => {
-      document.body.removeChild(script); // Cleanup on unmount
+      document.body.removeChild(script);
     };
   }, []);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <nav>
-          <ul>
-            <li>
-              <a href="#home" className="active">
-                Videos
-              </a>
-            </li>
-            <li>
-              <a href="#posts">Posts</a>
-            </li>
-            <li>
-              <a href="#community">Community</a>
-            </li>
-          </ul>
-        </nav>
-        {/* YouTube Subscribe Button */}
-
-        <div className="subscribe-button-wrapper">
-          <div
-            className="g-ytsubscribe"
-            data-channelid={CHANNEL_ID}
-            data-layout="default"
-            data-theme="dark"
-            data-count="default"
-          ></div>
-        </div>
-      </header>
-      <main>
-        <h1>VIDEOS</h1>
-        <YouTubeChannelVideos apiKey={API_KEY} channelId={CHANNEL_ID} />
-      </main>
-    </div>
+    <Router>
+      <div className="App">
+        <header className="App-header">
+          <nav>
+            <ul className="nav-list">
+              <li className="nav-item">
+                <NavLink to="/" exact>
+                  <img src="logo512.png" alt="Logo" className="logo" />
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/" exact activeClassName="active">
+                  Videos
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/posts" activeClassName="active">
+                  Posts
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/community" activeClassName="active">
+                  Community
+                </NavLink>
+              </li>
+            </ul>
+          </nav>
+          <div className="subscribe-button-wrapper">
+            <div
+              className="g-ytsubscribe"
+              data-channelid={CHANNEL_ID}
+              data-layout="default"
+              data-theme="dark"
+              data-count="default"
+            ></div>
+          </div>
+        </header>
+        <main>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <h1>VIDEOS</h1>
+                  <YouTubeChannelVideos channelId={CHANNEL_ID} />
+                </>
+              }
+            />
+            <Route path="/posts" element={<Posts />} />
+            <Route path="/community" element={<Community />} />
+          </Routes>
+        </main>
+      </div>
+    </Router>
   );
 }
 
