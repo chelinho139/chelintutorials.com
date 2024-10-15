@@ -6,9 +6,9 @@ import {
 } from "react-router-dom";
 import { useEffect } from "react";
 import "./App.css";
-import YouTubeChannelVideos from "./YouTubeChannelVideos";
-import Posts from "./Posts"; // Import the new Posts component
-import Community from "./Community"; // Import the new Community component
+import YouTubeChannelVideos from "./components/Home";
+import Posts from "./components/Posts"; // Import the new Posts component
+import Community from "./components/Community"; // Import the new Community component
 
 function App() {
   const CHANNEL_ID = "UCZJS-lpC1BhLSdsjAqj1i8A";
@@ -69,7 +69,7 @@ function App() {
               element={
                 <>
                   <h1>VIDEOS</h1>
-                  <YouTubeChannelVideos channelId={CHANNEL_ID} />
+                  <YouTubeChannelVideos />
                 </>
               }
             />

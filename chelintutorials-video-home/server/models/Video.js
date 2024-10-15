@@ -13,6 +13,19 @@ const videoSchema = new mongoose.Schema({
   channelId: { type: String },
   channelTitle: { type: String },
   liveBroadcastContent: { type: String },
+  duration: { type: String }, // ISO 8601 duration format
+  viewCount: { type: Number },
+  likeCount: { type: Number },
+  dislikeCount: { type: Number },
+  commentCount: { type: Number },
+  liveStreamingDetails: {
+    actualStartTime: { type: Date },
+    actualEndTime: { type: Date },
+    scheduledStartTime: { type: Date },
+    scheduledEndTime: { type: Date },
+    concurrentViewers: { type: Number },
+    activeLiveChatId: { type: String },
+  },
 });
 
 const Video = mongoose.model("Video", videoSchema);
