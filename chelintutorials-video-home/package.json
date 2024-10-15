@@ -7,7 +7,7 @@
     "start-client": "cd client && npm start",
     "start-server": "cd server && npm run dev",
     "install-all": "npm install && cd client && npm install && cd ../server && npm install",
-    "start-mongo": "node server/startInMemoryMongo.js"  
+    "start-mongo": "cd server && npm run start-mongo"
 },
   "devDependencies": {
     "concurrently": "^6.2.0"

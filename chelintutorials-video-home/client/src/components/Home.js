@@ -8,7 +8,7 @@ const parseDuration = (duration) => {
   return hours * 3600 + minutes * 60 + seconds;
 };
 
-const YouTubeChannelVideos = () => {
+const Home = () => {
   const [videos, setVideos] = useState([]);
   const [nextPageToken, setNextPageToken] = useState("");
   const [loading, setLoading] = useState(false);
@@ -124,4 +124,4 @@ const YouTubeChannelVideos = () => {
   );
 };
 
-export default YouTubeChannelVideos;
+export default Home;

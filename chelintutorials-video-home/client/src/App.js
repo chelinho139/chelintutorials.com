@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import { useEffect } from "react";
 import "./App.css";
-import YouTubeChannelVideos from "./components/Home";
+import Home from "./components/Home";
 import Posts from "./components/Posts"; // Import the new Posts component
 import Community from "./components/Community"; // Import the new Community component
 
@@ -83,7 +83,7 @@ function App() {
               element={
                 <>
                   <h1>VIDEOS</h1>
-                  <YouTubeChannelVideos />
+                  <Home />
                 </>
               }
             />
