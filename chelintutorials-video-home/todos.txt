@@ -1,0 +1,3 @@
+//todos
+// - create a build script to build the frontend and backend
+// - fix the telegram page
