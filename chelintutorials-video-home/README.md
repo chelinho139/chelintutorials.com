@@ -1,6 +1,7 @@
 # Chelin Tutorials Video Home
 
 This project is a full-stack application with a React frontend and a Node.js backend.
+This project was coded with Cursor AI.
 
 ## Project Structure
 
