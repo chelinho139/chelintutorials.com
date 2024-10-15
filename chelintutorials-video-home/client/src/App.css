@@ -1,7 +1,7 @@
 body {
   background-color: #121212;
   color: #ffffff;
-  font-family: Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -206,24 +206,43 @@ h1 {
 /* Add these styles to your existing App.css file */
 
 .youtube-video-list {
-  margin-top: 30px;
+  padding: 20px;
+  background-color: #1e1e1e;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
 }
 
-.youtube-video-list .header {
+.youtube-video-list:hover {
+  background-color: #2a2a2a;
+}
+
+.header .tabs {
   display: flex;
-  justify-content: space-between;
-  align-items: center; /* Vertically centers the items */
-  padding: 10px 0; /* Adjust padding as needed */
+  justify-content: space-around;
+  margin-bottom: 20px;
 }
 
-.youtube-video-list .tabs {
-  display: flex;
-  align-items: center; /* Vertically centers the tabs */
+.header .tabs button {
+  padding: 10px 20px;
+  border: none;
+  background-color: transparent;
+  color: #ffffff;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease;
+  font-size: 16px;
+  font-weight: 500;
 }
 
-.youtube-video-list .subscribe-btn {
-  margin-left: auto;
-  padding: 10px 20px; /* Ensure consistent padding */
+.header .tabs button.active {
+  color: #ff0000;
+  border-bottom: 2px solid #ff0000;
+  transform: scale(1.1);
+}
+
+.header .tabs button:hover {
+  color: #ff0000;
 }
 
 .video-grid {
@@ -236,15 +255,16 @@ h1 {
   display: block;
   text-decoration: none;
   color: inherit;
-  background-color: #1e1e1e;
+  background-color: #2a2a2a;
   border-radius: 8px;
   overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .video-item:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-10px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .video-item img {
@@ -254,14 +274,14 @@ h1 {
 }
 
 .video-item h3 {
-  font-size: 16px;
   margin: 10px;
+  font-size: 1.1em;
   color: #ffffff;
 }
 
 .video-item p {
-  font-size: 14px;
   margin: 10px;
+  font-size: 0.9em;
   color: #aaaaaa;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -269,55 +289,35 @@ h1 {
   overflow: hidden;
 }
 
-.video-item a {
-  display: inline-block;
-  background-color: #ff0000;
-  color: white;
-  padding: 8px 16px;
-  text-decoration: none;
-  border-radius: 4px;
-  margin: 10px;
-  transition: background-color 0.3s ease;
+.loading {
+  text-align: center;
+  font-size: 1.2em;
+  color: #ff0000;
 }
 
-.video-item a:hover {
-  background-color: #cc0000;
-}
-
-button {
+.load-more {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
   background-color: #ff0000;
   color: white;
   border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
   border-radius: 4px;
-  margin-top: 20px;
+  cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-button:hover {
+.load-more:hover {
   background-color: #cc0000;
 }
 
-button:disabled {
-  background-color: #444444;
-  cursor: not-allowed;
-}
-
-@media (min-width: 768px) {
+@media (max-width: 768px) {
   .video-grid {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
 }
 
 @media (min-width: 1024px) {
-  .video-grid {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  }
-}
-
-@media (min-width: 1200px) {
   .video-grid {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   }
