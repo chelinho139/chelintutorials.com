@@ -10,8 +10,6 @@ const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
 const CHANNEL_ID = "UCZJS-lpC1BhLSdsjAqj1i8A";
 
 router.get("/videos", async (req, res) => {
-  console.log("/videos");
-
   //if mockup is true, return a mockup response
   if (process.env.MOCKUP === "true") {
     const mockup = require("./b/mock");
@@ -40,6 +38,7 @@ router.get("/videos", async (req, res) => {
       }
     );
 
+    console.log("response", response);
     // Save videos to the database
     const videoItems = response.data.items.map((item) => ({
       videoId: item.id.videoId,
@@ -56,7 +55,8 @@ router.get("/videos", async (req, res) => {
 
     res.json({ items: videoItems });
   } catch (error) {
-    console.error("Error fetching YouTube videos:", error);
+    console.error("Error fetching YouTube videos");
+    // console.error("Error fetching YouTube videos:", error);
     res.status(500).json({ error: "Failed to fetch videos" });
   }
 });

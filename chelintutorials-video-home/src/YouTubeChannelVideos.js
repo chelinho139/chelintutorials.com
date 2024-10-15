@@ -61,22 +61,24 @@ const YouTubeChannelVideos = ({ channelId }) => {
         {/* <button className="subscribe-btn">Subscribe</button> */}
       </div>
       <div className="video-grid">
-        {videos.map((video) => (
-          <a
-            key={video.id.videoId}
-            href={`https://www.youtube.com/watch?v=${video.id.videoId}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="video-item"
-          >
-            <img
-              src={video.snippet.thumbnails.medium.url}
-              alt={video.snippet.title}
-            />
-            <h3>{video.snippet.title}</h3>
-            <p>{video.snippet.description}</p>
-          </a>
-        ))}
+        {videos.map((video) => {
+          const videoId = video.videoId;
+          if (!videoId) return null; // Skip rendering if videoId is undefined
+
+          return (
+            <a
+              key={videoId}
+              href={`https://www.youtube.com/watch?v=${videoId}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="video-item"
+            >
+              <img src={video.thumbnails.medium.url} alt={video.title} />
+              <h3>{video.title}</h3>
+              <p>{video.description}</p>
+            </a>
+          );
+        })}
       </div>
       {loading && <div className="loading">Loading...</div>}
       {nextPageToken && !loading && (
