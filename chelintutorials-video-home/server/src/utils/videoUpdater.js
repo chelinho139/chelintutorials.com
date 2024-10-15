@@ -7,41 +7,48 @@ const CHANNEL_ID = "UCZJS-lpC1BhLSdsjAqj1i8A";
 const MAX_VIDEOS = 100;
 const MAX_RESULTS_PER_PAGE = 50;
 
-// Helper function to fetch videos from YouTube API
 async function fetchVideosFromYouTube(nextPageToken = "") {
-  const response = await axios.get(
-    "https://www.googleapis.com/youtube/v3/search",
-    {
-      params: {
-        part: "snippet",
-        channelId: CHANNEL_ID,
-        maxResults: MAX_RESULTS_PER_PAGE,
-        order: "date",
-        type: "video",
-        pageToken: nextPageToken,
-        key: YOUTUBE_API_KEY,
-      },
-    }
-  );
-  return response.data;
+  try {
+    const response = await axios.get(
+      "https://www.googleapis.com/youtube/v3/search",
+      {
+        params: {
+          part: "snippet",
+          channelId: CHANNEL_ID,
+          maxResults: MAX_RESULTS_PER_PAGE,
+          order: "date",
+          type: "video",
+          pageToken: nextPageToken,
+          key: YOUTUBE_API_KEY,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching videos from YouTube:", error);
+    throw error;
+  }
 }
 
-// Helper function to fetch video details
 async function fetchVideoDetails(videoId) {
-  const response = await axios.get(
-    "https://www.googleapis.com/youtube/v3/videos",
-    {
-      params: {
-        part: "contentDetails,statistics,liveStreamingDetails",
-        id: videoId,
-        key: YOUTUBE_API_KEY,
-      },
-    }
-  );
-  return response.data.items[0];
+  try {
+    const response = await axios.get(
+      "https://www.googleapis.com/youtube/v3/videos",
+      {
+        params: {
+          part: "contentDetails,statistics,liveStreamingDetails",
+          id: videoId,
+          key: YOUTUBE_API_KEY,
+        },
+      }
+    );
+    return response.data.items[0];
+  } catch (error) {
+    console.error("Error fetching video details:", error);
+    throw error;
+  }
 }
 
-// Helper function to transform video data
 function transformVideoData(item, videoDetails) {
   return {
     videoId: item.id.videoId,
@@ -64,8 +71,6 @@ function transformVideoData(item, videoDetails) {
 async function updateVideosFromYouTube() {
   console.log("Fetching videos from YouTube API, key:", YOUTUBE_API_KEY);
 
-  console.log("Updating videos from YouTube API");
-
   let videoItems = [];
   let nextPageToken = "";
 
@@ -87,7 +92,7 @@ async function updateVideosFromYouTube() {
     })
   );
 
-  await Video.deleteMany({}); // Clear existing videos
+  await Video.deleteMany({});
   await Video.insertMany(detailedVideoItems);
 }
 

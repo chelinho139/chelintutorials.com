@@ -31,22 +31,36 @@ function App() {
           <nav>
             <ul className="nav-list">
               <li className="nav-item">
-                <NavLink to="/" exact>
+                <NavLink
+                  to="/"
+                  end
+                  className={({ isActive }) => (isActive ? "active" : "")}
+                >
                   <img src="logo512.png" alt="Logo" className="logo" />
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to="/" exact activeClassName="active">
+                <NavLink
+                  to="/"
+                  end
+                  className={({ isActive }) => (isActive ? "active" : "")}
+                >
                   Videos
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to="/posts" activeClassName="active">
+                <NavLink
+                  to="/posts"
+                  className={({ isActive }) => (isActive ? "active" : "")}
+                >
                   Posts
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to="/community" activeClassName="active">
+                <NavLink
+                  to="/community"
+                  className={({ isActive }) => (isActive ? "active" : "")}
+                >
                   Community
                 </NavLink>
               </li>

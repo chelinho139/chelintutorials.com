@@ -3,7 +3,6 @@ const express = require("express");
 const Video = require("../models/Video");
 
 const router = express.Router();
-
 const RESPONSE_VIDEO_LIMIT = 20; // Define the number of videos to respond with
 
 router.get("/videos", async (req, res) => {
@@ -27,7 +26,7 @@ router.get("/videos", async (req, res) => {
       nextPageToken: hasNextPage ? pageToken + 1 : null,
     });
   } catch (error) {
-    console.error("Error fetching videos from database", error);
+    console.error("Error fetching videos from database:", error);
     res.status(500).json({ error: "Failed to fetch videos" });
   }
 });

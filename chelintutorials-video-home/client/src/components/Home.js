@@ -1,4 +1,12 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
+
+const parseDuration = (duration) => {
+  const match = duration.match(/PT(\d+H)?(\d+M)?(\d+S)?/);
+  const hours = match[1] ? parseInt(match[1].replace("H", "")) : 0;
+  const minutes = match[2] ? parseInt(match[2].replace("M", "")) : 0;
+  const seconds = match[3] ? parseInt(match[3].replace("S", "")) : 0;
+  return hours * 3600 + minutes * 60 + seconds;
+};
 
 const YouTubeChannelVideos = () => {
   const [videos, setVideos] = useState([]);
@@ -6,7 +14,7 @@ const YouTubeChannelVideos = () => {
   const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState("videos");
 
-  const fetchVideos = async (pageToken = "", signal) => {
+  const fetchVideos = useCallback(async (pageToken = "", signal) => {
     setLoading(true);
     try {
       const response = await fetch(
@@ -14,11 +22,9 @@ const YouTubeChannelVideos = () => {
         { signal }
       );
       const data = await response.json();
-      // console.log("response nextPageToken", data.nextPageToken); // Log the response to check nextPageToken
-      console.log("response JSON", data); // Log the response to check nextPageToken
       if (data.items) {
         setVideos((prevVideos) => [...prevVideos, ...data.items]);
-        setNextPageToken(data.nextPageToken); // Update nextPageToken from response
+        setNextPageToken(data.nextPageToken);
       }
     } catch (error) {
       if (error.name !== "AbortError") {
@@ -27,7 +33,7 @@ const YouTubeChannelVideos = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -38,20 +44,10 @@ const YouTubeChannelVideos = () => {
 
     return () => {
       controller.abort();
-      console.log("cleaning up");
     };
-  }, []); // Remove nextPageToken from dependencies
-
-  const parseDuration = (duration) => {
-    const match = duration.match(/PT(\d+H)?(\d+M)?(\d+S)?/);
-    const hours = match[1] ? parseInt(match[1].replace("H", "")) : 0;
-    const minutes = match[2] ? parseInt(match[2].replace("M", "")) : 0;
-    const seconds = match[3] ? parseInt(match[3].replace("S", "")) : 0;
-    return hours * 3600 + minutes * 60 + seconds;
-  };
+  }, []);
 
   const filteredVideos = useMemo(() => {
-    console.log("Filtering videos...");
     return videos
       .filter((video) => {
         const durationInSeconds = parseDuration(video.duration);
