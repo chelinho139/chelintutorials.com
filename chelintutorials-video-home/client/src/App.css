@@ -182,8 +182,9 @@ h1 {
 }
 
 @media (max-width: 768px) {
-
-
+  .subscribe-button-wrapper {
+    display: none; /* Hide the subscribe button on mobile devices */
+  }
 
   h1 {
     font-size: 28px;
