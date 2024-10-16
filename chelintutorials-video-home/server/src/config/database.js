@@ -1,8 +1,6 @@
 const mongoose = require("mongoose");
 
 const MONGODB_OPTIONS = {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
   // Add any other options from your .env file
 };
 
