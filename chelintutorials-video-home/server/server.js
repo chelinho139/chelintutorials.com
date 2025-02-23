@@ -25,7 +25,7 @@ app.get("/api/hello", (req, res) => {
 });
 
 const links = {
-  'TLC': 'https://limoncito.substack.com/p/e556df63-5f7b-4926-a2b3-643c3cddf1fb'
+  'tlc': 'https://limoncito.substack.com/p/e556df63-5f7b-4926-a2b3-643c3cddf1fb'
 };
 
 // Route to handle short URLs
